@@ -88,9 +88,9 @@ public class Patterns
         public static void main(String [] suraj)
         {
             int arr[] = {1,2,3,4,5,6,7,8,9,10,11};
-//            printLeftToRight(arr);
-//            printRightToLeft(arr);
-//            printFromBothSides(arr);
+            printLeftToRight(arr);
+            printRightToLeft(arr);
+            printFromBothSides(arr);
             printFromCenterTowardsEnd(arr);
         }
     }
