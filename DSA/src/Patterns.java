@@ -43,40 +43,54 @@ public class Patterns
                 right = arr.length / 2;
                 left = right - 1;
 
-                while (left >= 0)
-                {
-                    System.out.println(arr[left] + " -> "+ arr[right]);
-                    left --;
-                    right ++;
-                }
+//                while (left >= 0)
+//                {
+//                    System.out.println(arr[left] + " -> "+ arr[right]);
+//                    left --;
+//                    right ++;
+//                }
             }
             else
             {
                 right = arr.length / 2;
                 left = arr.length / 2;
 
-                while (left >= 0)
+//                while (left >= 0)
+//                {
+//                    if ( left == right)
+//                    {
+//                        System.out.println(arr[left]);
+//                    }
+//                    else
+//                    {
+//                        System.out.println(arr[left] + " -> " + arr[right]);
+//                    }
+//                    left--;
+//                    right++;
+//                }
+            }
+
+            while (left >= 0 && right <= arr.length - 1)
+            {
+                if(left == right)
                 {
-                    if ( left == right)
-                    {
-                        System.out.println(arr[left]);
-                    }
-                    else
-                    {
-                        System.out.println(arr[left] + " -> " + arr[right]);
-                    }
-                    left--;
-                    right++;
+                    System.out.println(arr[left] + " -> ");
                 }
+                else
+                {
+                    System.out.println(arr[left] + arr[right] + " -> ");
+                }
+                left --;
+                right ++;
             }
         }
 
         public static void main(String [] suraj)
         {
             int arr[] = {1,2,3,4,5,6,7,8,9,10,11};
-            printLeftToRight(arr);
-            printRightToLeft(arr);
-            printFromBothSides(arr);
+//            printLeftToRight(arr);
+//            printRightToLeft(arr);
+//            printFromBothSides(arr);
             printFromCenterTowardsEnd(arr);
         }
     }
