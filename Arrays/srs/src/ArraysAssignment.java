@@ -614,13 +614,17 @@ public class ArraysAssignment
     static int signCount(int arr[])
     {
         int count = 0;
+        int i = 0;
+        int j = 1;
 
-        for(int i = 0; i < arr.length; i++)
+        while(j < arr.length)
         {
-            if(arr[i] > 0 || arr[i] < 0)
-            {
+            if(arr[i] > 0 && arr[j] < 0)
                 count++;
-            }
+            if(arr[i] < 0 && arr[j] > 0)
+                count++;
+            i++;
+            j++;
         }
         return count;
     }
@@ -632,6 +636,58 @@ public class ArraysAssignment
         System.out.println("18 --> Count when Sign Changes : " + result);
     }
 
+//    Given runs scored in each over of a cricket match,return the over number (starting from 1) with the most runs.
+//    Input to the function:  [6, 12, 4, 15, 9]
+//    Return from the function:  4
+
+    static int getOver(int arr[])
+    {
+        int over = 1;
+        int max = arr[0];
+
+        for(int i = 0; i < arr.length; i++)
+        {
+            if(arr[i] > max)
+            {
+                max = arr[i];
+                over = i + 1;
+            }
+        }
+        return over;
+    }
+
+    static void printCricketOver()
+    {
+        int arr[] = {6, 12, 4, 15, 9};
+        System.out.println("19 --> Highest Score in Over : " + getOver(arr));
+    }
+
+//    Given Ravi's and Sita's marks in the same five subjects, return in how many subjects Ravi scored more than Sita.
+//    Input to the function:  [78, 65, 90, 55, 82] and [70, 80, 85, 60, 82]
+//    Return from the function:  2
+
+    static int countHighestMarks(int ravi[], int sita[])
+    {
+        int count = 0;
+        for(int i = 0; i < ravi.length; i++)
+        {
+            if (ravi[i] > sita[i])
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    static void printRaviMarks()
+    {
+        int ravi[] = {78, 65, 90, 55, 82};
+        int sita[] = {70, 80, 85, 60, 82};
+        int res = countHighestMarks(ravi,sita);
+        System.out.println("20 --> Ravi Score More Than Sita in Subjets : " + res);
+    }
+
+    
 
 
     public static void main(String[] args)
@@ -654,6 +710,8 @@ public class ArraysAssignment
         printCountPalindrome();     // 16
         printSumOfElements();       // 17
         printSignCount();           // 18
+        printCricketOver();         // 19
+        printRaviMarks();           // 20
 
 
     }
