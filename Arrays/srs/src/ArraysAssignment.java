@@ -687,7 +687,121 @@ public class ArraysAssignment
         System.out.println("20 --> Ravi Score More Than Sita in Subjets : " + res);
     }
 
+//    Given two arrays of the same length, return a new array with the bigger number at each position.
+//    Input to the function: [4, 9, 2, 7] and [6, 3, 8, 7]
+//    Return from the function: [6, 9, 8, 7]
+
     
+
+
+
+
+
+
+
+
+//    Given the scores of three players across matches, return which player (1, 2 or 3) has the highest total.
+//    Input to the function:  [30, 45, 20], [50, 10, 40] and [25, 35, 30]
+//    Return from the function:  2
+
+    static int getHighestScoredPlayer(int dhoni[], int virat[], int rohit[])
+    {
+        if(dhoni == null && virat == null && rohit == null)
+        {
+            return 0;
+        }
+        if(dhoni.length == 0 || virat.length == 0 && rohit.length == 0)
+        {
+            return 0;
+        }
+
+        int dSum = 0;
+        int vSUm = 0;
+        int rSum = 0;
+
+        for(int i = 0; i < dhoni.length; i++)
+        {
+            dSum = dSum + dhoni[i];
+        }
+
+        for(int i = 0; i < virat.length; i++)
+        {
+            vSUm = vSUm + virat[i];
+        }
+
+        for(int i = 0; i < rohit.length; i++)
+        {
+            rSum =rSum + rohit[i];
+        }
+
+        if(dSum > vSUm && dSum > rSum)
+        {
+            return 1;
+        }
+        else if (vSUm > rSum && vSUm > dSum)
+        {
+            return 2;
+        }
+        else
+        {
+            return 3;
+        }
+    }
+
+    static void printSumOfHighScore()
+    {
+        int dhoni[] = {30, 45, 20};
+        int virat[] = {50, 10, 40};
+        int rohit[] = {25, 35, 30};
+        System.out.println("24 --> Highest Total of Across Matches : " + getHighestScoredPlayer(dhoni,virat,rohit));
+    }
+
+
+//    Given three arrays, return the average of each array as a new array.
+//    Input to the function: [10, 20, 30], [5, 15] and [8, 8, 8, 8]
+//    Return from the function: [20, 10, 8]
+
+    static int getAverage(int[] arr)
+    {
+        if (arr == null || arr.length == 0)
+        {
+            return 0;
+        }
+
+        long sum = 0;
+
+        for (int i = 0; i < arr.length; i++)
+        {
+            sum = sum + arr[i];
+        }
+
+        return (int) (sum / arr.length);
+    }
+
+    static int[] getAvgofThreeArrays(int[] a1, int[] a2, int[] a3)
+    {
+        return new int[]{getAverage(a1), getAverage(a2), getAverage(a3)};
+    }
+
+    static void printAvgofThree()
+    {
+        int a1[] = {10, 20, 30};
+        int a2[] = {5, 15};
+        int a3[] = {8, 8, 8, 8};
+
+        int result[] = getAvgofThreeArrays(a1,a2,a3);
+
+        System.out.print("25 --> Average Score of all three Arrays : [");
+        for(int i = 0; i < result.length; i++)
+        {
+            System.out.print(result[i]);
+            if(i < result.length - 1)
+            {
+                System.out.print(",");
+            }
+        }
+        System.out.println("]");
+    }
 
 
     public static void main(String[] args)
@@ -712,7 +826,10 @@ public class ArraysAssignment
         printSignCount();           // 18
         printCricketOver();         // 19
         printRaviMarks();           // 20
-
-
+                                    // 21
+                                    // 22
+                                    // 23
+        printSumOfHighScore();      // 24
+        printAvgofThree();          // 25
     }
 }
