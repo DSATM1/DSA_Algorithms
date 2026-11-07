@@ -33,7 +33,7 @@ public class ArraysAssignment
         int arr[] = {3};
         int res[] = countEvenOdd(arr);
 
-        System.out.print("1 --> Even and Odd Count : [");
+        System.out.print("1  --> Even and Odd Count                      : [");
         for(int i = 0; i < res.length; i++)
         {
             System.out.print(res[i]);
@@ -70,7 +70,7 @@ public class ArraysAssignment
     {
         int arr[] = {70, 85, 90, 55};
         double result = avgMarks(arr);
-        System.out.println("2 --> Average Student Marks : " + result);
+        System.out.println("2  --> Average Student Marks                   : " + result);
     }
 
 //    Return all numbers that are greater than 50 and less than 100.
@@ -112,7 +112,7 @@ public class ArraysAssignment
         int arr[] = {45, 67, 100, 52, 99, 120, 50};
         int result[] = above50below100Numbers(arr);
 
-        System.out.print("3 --> Greater than 50 and Less than 100 : [");
+        System.out.print("3  --> Greater than 50 and Less than 100       : [");
         for(int i = 0; i < result.length; i++)
         {
             System.out.print(result[i]);
@@ -160,7 +160,7 @@ public class ArraysAssignment
 //      int arr[] = {-10, -20, -5, -30};
         int arr[] = {14,3,27,9};
         int result = maxMinDifference(arr);
-        System.out.println("4 --> Max Min Difference : " + result);
+        System.out.println("4  --> Max Min Difference                      : " + result);
 
     }
 
@@ -192,7 +192,7 @@ public class ArraysAssignment
     {
         int arr[] = {40, 22, 35, 90, 18};
         int pass = passedStudents(arr);
-        System.out.println("5 --> Passed Students In Exam : " + pass);
+        System.out.println("5  --> Passed Students In Exam                 : " + pass);
     }
 
 //    Return the sum of the numbers at positions 0, 2, 4 and so on.
@@ -222,7 +222,7 @@ public class ArraysAssignment
     {
         int arr[] = {10, 3, 20, 7, 30};
         int sum = sumOfPositions(arr);
-        System.out.println("6 --> Sum of Given Position : " + sum);
+        System.out.println("6  --> Sum of Given Position                   : " + sum);
     }
 
 //    Given a week of temperatures, return how many days were hotter than the day before.
@@ -252,7 +252,7 @@ public class ArraysAssignment
     {
         int arr[] = {30, 32, 31, 35, 36, 34, 37};
         int temperature = tempCompare(arr);
-        System.out.println("7 --> Week of Hotter Temperatures : " + temperature);
+        System.out.println("7  --> Week of Hotter Temperatures             : " + temperature);
     }
 
 //    Return a new array where every odd number is doubled and every even number is halved.
@@ -287,7 +287,7 @@ public class ArraysAssignment
         int arr[] = {4, 7, 10, 3};
         int newArray[] = oddDoubleEvenSingle(arr);
 
-        System.out.print("8 --> Even Half and Odd Double : [");
+        System.out.print("8  --> Even Half and Odd Double                : [");
         for(int i = 0; i < newArray.length; i++ )
         {
             System.out.print(newArray[i]);
@@ -326,7 +326,7 @@ public class ArraysAssignment
     {
         int arr[] = {15, 9, 30, 10, 45, 7};
         int div = divisibleBy3And5(arr);
-        System.out.println("9 --> Elements Divisible by both 3 and 5 : " + div);
+        System.out.println("9  --> Elements Divisible by both 3 and 5      : " + div);
     }
 
 //    Return the number that is closest to the average of the array.
@@ -379,7 +379,7 @@ public class ArraysAssignment
     {
         int arr[] = {2, 9, 4, 15};
         int close = closestToAversfge(arr);
-        System.out.println("10 --> Closest to Average : " + close);
+        System.out.println("10 --> Closest to Average                      : " + close);
     }
 
 //    Given daily step counts, return how many days crossed 10,000 steps and the best day's steps, as [days, best].
@@ -409,7 +409,7 @@ public class ArraysAssignment
     {
         int arr[] = {8000, 12000, 10500, 9000, 15000};
         int result[] = stepCount(arr);
-        System.out.print("11 --> StepCount Highest Days And Best Streak : [");
+        System.out.print("11 --> StepCount Highest Days And Best Streak  : [");
         for(int i = 0; i < result.length; i++)
         {
             System.out.print(result[i]);
@@ -442,7 +442,7 @@ public class ArraysAssignment
         int arr[] = {5, -3, 8, -1, 0};
         int result[] = replaceByZero(arr);
 
-        System.out.print("12 --> Replace Negative value By Zero : [");
+        System.out.print("12 --> Replace Negative value By Zero   \t   : [");
         for(int i = 0; i < result.length; i++)
         {
             System.out.print(result[i]);
@@ -476,7 +476,7 @@ public class ArraysAssignment
     {
         int arr[] = {2,1};
         boolean result = increasingOrder(arr);
-        System.out.println("13 --> Array is in Increasing Order : "+result);
+        System.out.println("13 --> Array is in Increasing Order \t\t   : "+result);
     }
 
 //    Return the sum of the first and the last number.
@@ -509,7 +509,7 @@ public class ArraysAssignment
     {
         int arr[] = {7, 3, 9, 4};
         int res = sumOfFirstLast(arr);
-        System.out.println("14 --> Sum of First and last Element : " + res);
+        System.out.println("14 --> Sum of First and last Element \t\t   : " + res);
     }
 
 //    Given prices of items in a shopping cart, give a 10% discount if the total is above 1000. Return
@@ -538,7 +538,7 @@ public class ArraysAssignment
     {
         int arr[] = {400, 350, 450};
         int result = getDiscountAmout(arr);
-        System.out.println("15 --> Discount Amount in Shopping Cart : " + result);
+        System.out.println("15 --> Discount Amount in Shopping Cart \t   : " + result);
     }
 
 //    Return how many numbers are palindromes (read the same both ways, like 121).
@@ -568,7 +568,7 @@ public class ArraysAssignment
     {
         int arr[] = {121, 45, 7, 1331, 80,0,1,-1,12,234,323};
         int result = countpalindrome(arr);
-        System.out.println("16 --> Palindrome Count in Array : " + result);
+        System.out.println("16 --> Palindrome Count in Array \t\t\t   : " + result);
     }
 
 //    Return a new array where each number is replaced by the sum of its digits.
@@ -595,7 +595,7 @@ public class ArraysAssignment
     {
         int arr[] = {123, 45, 9};
         int res[] = sumOfElements(arr);
-        System.out.print("17 --> Sum of Each Elements of the Array : [");
+        System.out.print("17 --> Sum of Each Elements of the Array \t   : [");
         for(int i = 0; i < res.length; i++)
         {
             System.out.print(res[i]);
@@ -633,7 +633,7 @@ public class ArraysAssignment
     {
         int arr[] = {3, -2, -5, 4, 6, -1};
         int result = signCount(arr);
-        System.out.println("18 --> Count when Sign Changes : " + result);
+        System.out.println("18 --> Count when Sign Changes \t\t\t\t   : " + result);
     }
 
 //    Given runs scored in each over of a cricket match,return the over number (starting from 1) with the most runs.
@@ -659,7 +659,7 @@ public class ArraysAssignment
     static void printCricketOver()
     {
         int arr[] = {6, 12, 4, 15, 9};
-        System.out.println("19 --> Highest Score in Over : " + getOver(arr));
+        System.out.println("19 --> Highest Score in Over \t\t\t\t   : " + getOver(arr));
     }
 
 //    Given Ravi's and Sita's marks in the same five subjects, return in how many subjects Ravi scored more than Sita.
@@ -684,21 +684,148 @@ public class ArraysAssignment
         int ravi[] = {78, 65, 90, 55, 82};
         int sita[] = {70, 80, 85, 60, 82};
         int res = countHighestMarks(ravi,sita);
-        System.out.println("20 --> Ravi Score More Than Sita in Subjets : " + res);
+        System.out.println("20 --> Ravi Score More Than Sita in Subjets    : " + res);
     }
 
 //    Given two arrays of the same length, return a new array with the bigger number at each position.
 //    Input to the function: [4, 9, 2, 7] and [6, 3, 8, 7]
 //    Return from the function: [6, 9, 8, 7]
 
-    
+    static int[] getBigNumber(int a1[], int a2[])
+    {
+        int max = 0;
 
+        int result[] = new int[a1.length];
 
+        for(int i = 0; i < a1.length; i++)
+        {
+            if(a1[i] > a2[i])
+            {
+                max = a1[i];
+            }
+            else
+            {
+                max = a2[i];
+            }
+            result[i] = max;
+        }
 
+        return result;
+    }
 
+    static void printBigNumber()
+    {
+        int a1[] = {4, 9, 2, 7};
+        int a2[] = {6, 3, 8, 7};
+        int result[] = getBigNumber(a1,a2);
 
+        System.out.print("21 --> Big Numbers from both Arrays are \t   : [");
+        for(int i = 0; i < result.length; i++)
+        {
+            System.out.print(result[i]);
+            if(i < result.length - 1)
+            {
+                System.out.print(",");
+            }
+        }
+        System.out.println("]");
+    }
 
+//    Return the numbers in the first array that are not present in the second array.
+//    Input to the function: [1, 4, 6, 8, 10] and [4, 8, 12]
+//    Return from the function: [1, 6, 10]
 
+    static int[] getElementsFromFirstArray(int a1[], int a2[])
+    {
+        int count = 0;
+        for(int i = 0; i < a1.length; i++)
+        {
+            boolean found = false;
+            for(int j = 0; j < a2.length; j++)
+            {
+                if(a1[i] == a2[j])
+                {
+                    found = true;
+                }
+            }
+            if(found == false)
+            {
+                count++;
+            }
+        }
+
+        int result[] = new int[count];
+        int position = 0;
+
+        for(int i = 0; i < a1.length; i++)
+        {
+            boolean found = false;
+            for(int j = 0; j < a2.length; j++)
+            {
+                if(a1[i] == a2[j])
+                {
+                    found = true;
+                }
+            }
+
+            if (found == false)
+            {
+                result[position] = a1[i];
+                position++;
+            }
+        }
+        return result;
+    }
+
+    static void printFirstElements()
+    {
+    int a1[] = {1, 4, 6, 8, 10};
+    int a2[] = {4,8,12};
+    int result[] = getElementsFromFirstArray(a1,a2);
+
+    System.out.print("22 --> Elements From First Array \t\t\t   : [");
+    for(int i = 0; i < result.length; i++)
+    {
+        System.out.print(result[i]);
+        if(i < result.length - 1)
+        {
+            System.out.print(",");
+        }
+    }
+    System.out.println("]");
+}
+
+//    Given prices of the same items at Shop A and Shop B, return how much money is saved by
+//    buying each item at the cheaper shop instead of buying everything at Shop A.
+//    Input to the function: [100, 250, 80, 40] and [90, 260, 70, 45]
+//    Return from the function: 20
+
+    static int getCheapItems(int shop1[], int shop2[])
+    {
+        int result = 0;
+        int totalSumShop1 = 0;
+        for(int i = 0; i < shop1.length; i++)
+        {
+            if(shop1[i] > shop2[i])
+            {
+                result += shop2[i];
+            }
+            else
+            {
+                result += shop1[i];
+            }
+            totalSumShop1 += shop1[i];
+        }
+        return totalSumShop1 - result;
+    }
+
+    static void printCheapItems()
+    {
+        int shop1[] = {10,50,800,450};
+        int shop2[] = {90,260,70,45};
+
+        System.out.println("23 --> Cheapest Items Among 2 Shops \t\t   : " + getCheapItems(shop1,shop2));
+    }
 
 //    Given the scores of three players across matches, return which player (1, 2 or 3) has the highest total.
 //    Input to the function:  [30, 45, 20], [50, 10, 40] and [25, 35, 30]
@@ -753,7 +880,7 @@ public class ArraysAssignment
         int dhoni[] = {30, 45, 20};
         int virat[] = {50, 10, 40};
         int rohit[] = {25, 35, 30};
-        System.out.println("24 --> Highest Total of Across Matches : " + getHighestScoredPlayer(dhoni,virat,rohit));
+        System.out.println("24 --> Highest Total of Across Matches \t\t   : " + getHighestScoredPlayer(dhoni,virat,rohit));
     }
 
 
@@ -791,7 +918,7 @@ public class ArraysAssignment
 
         int result[] = getAvgofThreeArrays(a1,a2,a3);
 
-        System.out.print("25 --> Average Score of all three Arrays : [");
+        System.out.print("25 --> Average Score of all three Arrays  \t   : [");
         for(int i = 0; i < result.length; i++)
         {
             System.out.print(result[i]);
@@ -802,7 +929,6 @@ public class ArraysAssignment
         }
         System.out.println("]");
     }
-
 
     public static void main(String[] args)
     {
@@ -826,9 +952,9 @@ public class ArraysAssignment
         printSignCount();           // 18
         printCricketOver();         // 19
         printRaviMarks();           // 20
-                                    // 21
-                                    // 22
-                                    // 23
+        printBigNumber();           // 21
+        printFirstElements();       // 22
+        printCheapItems();          // 23
         printSumOfHighScore();      // 24
         printAvgofThree();          // 25
     }
