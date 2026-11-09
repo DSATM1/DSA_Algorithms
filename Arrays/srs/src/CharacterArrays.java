@@ -335,7 +335,7 @@ public class CharacterArrays
         printCountCapital();            // 6
         printPassword();                // 7
         printReplace();                 // 8
-                    // Balance
+                                        // Balance
         printSameElements();            // 24
         printCandidate();               // 25
 
