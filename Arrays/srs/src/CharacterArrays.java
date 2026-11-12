@@ -246,7 +246,9 @@ public class CharacterArrays {
 
     static char[] firstLetterCaptial(char ch[])
     {
+        char init[] = new char[ch.length];
 
+        return init;
     }
 
     static void printFirstCapital()
@@ -255,7 +257,7 @@ public class CharacterArrays {
 
         char res[] = firstLetterCaptial(ch);
 
-        System.out.print("8 --> Replace the Space : [");
+        System.out.print("10 --> First Initials Captial                  : [");
 
         for (int i = 0; i < res.length; i++)
         {
