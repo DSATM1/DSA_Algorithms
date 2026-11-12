@@ -1,5 +1,4 @@
-public class CharacterArrays
-{
+public class CharacterArrays {
 //    Count the vowels and consonants. Return both as [vowels, consonants].
 //    Input to the function: ['a','p','p','l','e']
 //    Return from the function: [2, 3]
@@ -65,14 +64,10 @@ public class CharacterArrays
     static char[] getCapital(char[] ch) {
         char result[] = new char[ch.length];
 
-        for (int i = 0; i < ch.length; i++)
-        {
-            if (ch[i] >= 'a' && ch[i] <= 'z')
-            {
+        for (int i = 0; i < ch.length; i++) {
+            if (ch[i] >= 'a' && ch[i] <= 'z') {
                 result[i] = (char) (ch[i] - 32);
-            }
-            else
-            {
+            } else {
                 result[i] = ch[i];
             }
         }
@@ -84,11 +79,9 @@ public class CharacterArrays
         char res[] = getCapital(ch);
 
         System.out.print("3 --> Capital Letters : [");
-        for (int i = 0; i < res.length; i++)
-        {
+        for (int i = 0; i < res.length; i++) {
             System.out.print(res[i]);
-            if (i < res.length - 1)
-            {
+            if (i < res.length - 1) {
                 System.out.print(",");
             }
         }
@@ -101,12 +94,10 @@ public class CharacterArrays
 
     static boolean findDigit(char ch[]) {
         boolean digitFound = false;
-        for(int i = 0; i < ch.length; i++)
-        {
+        for (int i = 0; i < ch.length; i++) {
             int digit = ch[i] - '0';
 
-            if(ch[i] >= '0' && ch[i] <= '9')
-            {
+            if (ch[i] >= '0' && ch[i] <= '9') {
                 digitFound = true;
             }
         }
@@ -114,7 +105,7 @@ public class CharacterArrays
     }
 
     static void printDiscoveredDigit() {
-        char ch[] = {'p','a','s','s','9'};
+        char ch[] = {'p', 'a', 's', 's', '9'};
         boolean res = findDigit(ch);
         System.out.println("4 --> Array Contains Digit ? : " + res);
     }
@@ -125,25 +116,22 @@ public class CharacterArrays
 
     static char[] getfirstLastChar(char ch[]) {
 
-        if(ch == null || ch.length == 0)
-        {
+        if (ch == null || ch.length == 0) {
             return new char[]{};
         }
         char firstElement = ch[0];
         char lastElement = ch[ch.length - 1];
-        return new char[]{firstElement,lastElement};
+        return new char[]{firstElement, lastElement};
     }
 
     static void printElementsFirstlast() {
-        char ch[] = {'m','a','n','g','o'};
+        char ch[] = {'m', 'a', 'n', 'g', 'o'};
         char result[] = getfirstLastChar(ch);
 
         System.out.print("5 --> Print First And Last Elements in Array : [");
-        for(int i = 0; i < result.length; i++)
-        {
+        for (int i = 0; i < result.length; i++) {
             System.out.print(result[i]);
-            if(i < result.length - 1)
-            {
+            if (i < result.length - 1) {
                 System.out.print(",");
             }
         }
@@ -157,10 +145,8 @@ public class CharacterArrays
     static int getCountOfCapital(char ch[]) {
         int count = 0;
 
-        for(int i = 0; i< ch.length; i++)
-        {
-            if(ch[i] >= 'A' && ch[i] <= 'Z')
-            {
+        for (int i = 0; i < ch.length; i++) {
+            if (ch[i] >= 'A' && ch[i] <= 'Z') {
                 count++;
             }
         }
@@ -168,7 +154,7 @@ public class CharacterArrays
     }
 
     static void printCountCapital() {
-        char ch[] = {'I','A','A','a','a','N','o','1'};
+        char ch[] = {'I', 'A', 'A', 'a', 'a', 'N', 'o', '1'};
         System.out.println("6 --> Count of Capitals in Array :  " + getCountOfCapital(ch));
     }
 
@@ -179,15 +165,12 @@ public class CharacterArrays
     static boolean validatePassword(char password[]) {
         boolean isPwdHas8Ch = false;
         boolean hasDigit = false;
-        if(password.length <= 8)
-        {
+        if (password.length <= 8) {
             isPwdHas8Ch = true;
         }
 
-        for(int digit = 0; digit < password.length; digit++)
-        {
-            if(password[digit] >= '0' && password[digit] <= '9')
-            {
+        for (int digit = 0; digit < password.length; digit++) {
+            if (password[digit] >= '0' && password[digit] <= '9') {
                 hasDigit = true;
             }
         }
@@ -195,7 +178,7 @@ public class CharacterArrays
     }
 
     static void printPassword() {
-        char password[] = {'s','e','c','r','e','x'};
+        char password[] = {'s', 'e', 'c', 'r', 'e', 'x'};
         System.out.println("7 --> Validating Password : " + validatePassword(password));
     }
 
@@ -203,11 +186,9 @@ public class CharacterArrays
 //    Input to the function: ['h','i',' ','t','h','e','r','e']
 //    Return from the function: ['h','i','_','t','h','e','r','e']
 
-    static char[] replaceSpace(char [] ch) {
-        for(int i = 0; i < ch.length; i++)
-        {
-            if(ch[i] == ' ')
-            {
+    static char[] replaceSpace(char[] ch) {
+        for (int i = 0; i < ch.length; i++) {
+            if (ch[i] == ' ') {
                 ch[i] = '_';
             }
         }
@@ -215,19 +196,131 @@ public class CharacterArrays
     }
 
     static void printReplace() {
-        char ch[] = {'h','i',' ','t','h','e','r','e'};
+        char ch[] = {'h', 'i', ' ', 't', 'h', 'e', 'r', 'e'};
         char res[] = replaceSpace(ch);
         System.out.print("8 --> Replace the Space : [");
-        for(int i = 0; i< res.length; i++)
+        for (int i = 0; i < res.length; i++) {
+            System.out.print(res[i]);
+            if (i < res.length - 1) {
+                System.out.print(",");
+            }
+        }
+        System.out.println("]");
+    }
+
+
+//    Return the number of words. Words are separated by single spaces.
+//    Input to the function: ['I',' ','l','o','v','e',' ','J','a','v','a']
+//    Return from the function: 3
+
+    static int wordSeperatedBySpace(char arr[]) {
+        if(arr.length == 0)
+        {
+            return 0;
+        }
+
+        int count = 0;
+
+        if(arr[0] != ' ')
+        {
+            count = 1;
+        }
+        for(int i = 1; i < arr.length; i++)
+        {
+            if(arr[i - 1] == ' ' && arr[i] != ' ')
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    static void printWordBySpace() {
+        char arr[] = {' ',' ','J','a','v','a'};
+        System.out.println("9 --> Words Seperated By Spaces are : " + wordSeperatedBySpace(arr));
+    }
+
+//    Given a full name, return the initials in capitals.
+//    Input to the function: ['r','a','h','u','l',' ','d','r','a','v','i','d']
+//    Return from the function: ['R','D']
+
+    static char[] firstLetterCaptial(char ch[])
+    {
+
+    }
+
+    static void printFirstCapital()
+    {
+        char ch[] = {};
+
+        char res[] = firstLetterCaptial(ch);
+
+        System.out.print("8 --> Replace the Space : [");
+
+        for (int i = 0; i < res.length; i++)
         {
             System.out.print(res[i]);
-            if(i < res.length - 1)
+
+            if (i < res.length - 1)
             {
                 System.out.print(",");
             }
         }
         System.out.println("]");
     }
+
+//    Return the array with all vowels removed.
+//    Input to the function: ['p','r','o','g','r','a','m']
+//    Return from the function: ['p','r','g','r','m']
+
+//    Return the letter that comes last in alphabetical order.
+//    Input to the function: ['d','o','g','s']
+//    Return from the function: 's'
+
+//    Given the grades of a class, return how many students got 'A'.
+//    Input to the function: ['A','B','A','C','A','B']
+//    Return from the function: 3
+
+//    Return the sum of all the digit characters, ignoring letters.
+//    Input to the function: ['a','3','b','7','2']
+//    Return from the function: 12
+
+//    Given the traffic signal colours seen in a day ('R', 'G', 'Y'), return the counts as [red, green,yellow].
+//    Input to the function: ['R','G','G','Y','R','G']
+//    Return from the function: [2, 3, 1]
+
+//    Mobile number check: return true if there are exactly 10 characters and all are digits.
+//    Input to the function: ['9','8','4','5','0','1','2','3','4','5']
+//    Return from the function: true
+
+//    Return the array with each letter moved one step forward in the alphabet ('z' becomes 'a').
+//    Input to the function: ['c','a','t','z']
+//    Return from the function: ['d','b','u','a']
+
+//    Return the positions (indexes) where a given character appears.
+//    Input to the function: ['h','e','l','l','o'] and 'l'
+//    Return from the function: [2, 3]
+
+//    Return true if the word reads the same forwards and backwards.
+//    Input to the function: ['m','a','d','a','m']
+//    Return from the function: true
+
+//    Given two words of the same length, return at how many positions they have the same character.
+//    Input to the function: ['c','a','r','d'] and ['c','o','r','e']
+//    Return from the function: 2
+
+//    Given a student's quiz answers and the answer key, return the score (1 mark per correct answer).
+//    Input to the function: ['A','C','B','D','A'] and ['A','B','B','D','C']
+//    Return from the function: 3
+
+//    Return the characters in the first array that are not present in the second array.
+//    Input to the function: ['a','b','c','d'] and ['b','d']
+//    Return from the function: ['a','c']
+
+//    Given a first name and a last name, return the full name with a space in between.
+//    Input to the function: ['r','a','m'] and ['k','u','m','a','r']
+//    Return from the function: ['r','a','m',' ','k','u','m','a','r']
+
 
 //    Return true if both arrays have exactly the same letters, in any order.
 //    Input to the function: ['s','i','l','e','n','t'] and ['l','i','s','t','e','n']
@@ -324,6 +417,7 @@ public class CharacterArrays
     }
 
 
+
     static void main(String[] args) {
         printCountVC();                 // 1
         printAppearedCharacter();       // 2
@@ -333,7 +427,21 @@ public class CharacterArrays
         printCountCapital();            // 6
         printPassword();                // 7
         printReplace();                 // 8
-                                        // Balance
+        printWordBySpace();             // 9
+        printFirstCapital();            // 10
+        // 11
+        // 12
+        // 13
+        // 14
+        // 15
+        // 16
+        // 17
+        // 18
+        // 19
+        // 20
+        // 21
+        // 22
+        // 23
         printSameElements();            // 24
         printCandidate();               // 25
 
