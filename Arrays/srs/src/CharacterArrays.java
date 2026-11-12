@@ -263,8 +263,7 @@ public class CharacterArrays
 //    Input to the function: ['A','B','A'], ['B','B','A','B'] and ['A','A']
 //    Return from the function: 'A'
 
-    static char mostVotingCandidate(char a[],char b[], char c[])
-    {
+    static char mostVotingCandidate(char a[],char b[], char c[]) {
         int voteA = 0;
         int voteB = 0;
 
@@ -317,8 +316,7 @@ public class CharacterArrays
         return 'T';
     }
 
-    static void printCandidate()
-    {
+    static void printCandidate() {
         char a[] = {'A','B','A'};
         char b[] = {'B','B','A','B'};
         char c[] = {'A','A'};
