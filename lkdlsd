@@ -1,0 +1,52 @@
+[1mdiff --git a/Arrays/out/production/ArraysAndTypes/CharacterArrays.class b/Arrays/out/production/ArraysAndTypes/CharacterArrays.class[m
+[1mindex 3739ad0..4067a5d 100644[m
+Binary files a/Arrays/out/production/ArraysAndTypes/CharacterArrays.class and b/Arrays/out/production/ArraysAndTypes/CharacterArrays.class differ
+[1mdiff --git a/Arrays/srs/src/CharacterArrays.java b/Arrays/srs/src/CharacterArrays.java[m
+[1mindex b8b3a2b..cafe3da 100644[m
+[1m--- a/Arrays/srs/src/CharacterArrays.java[m
+[1m+++ b/Arrays/srs/src/CharacterArrays.java[m
+[36m@@ -246,7 +246,9 @@[m [mpublic class CharacterArrays {[m
+ [m
+     static char[] firstLetterCaptial(char ch[])[m
+     {[m
+[32m+[m[32m        char init[] = new char[ch.length];[m
+ [m
+[32m+[m[32m        return init;[m
+     }[m
+ [m
+     static void printFirstCapital()[m
+[36m@@ -255,7 +257,7 @@[m [mpublic class CharacterArrays {[m
+ [m
+         char res[] = firstLetterCaptial(ch);[m
+ [m
+[31m-        System.out.print("8 --> Replace the Space : [");[m
+[32m+[m[32m        System.out.print("10 --> First Initials Captial : [");[m
+ [m
+         for (int i = 0; i < res.length; i++)[m
+         {[m
+[1mdiff --git a/Strings/ExampleStrings/src/Strpractice.java b/Strings/ExampleStrings/src/Strpractice.java[m
+[1mindex a9e784c..cda5ab8 100644[m
+[1m--- a/Strings/ExampleStrings/src/Strpractice.java[m
+[1m+++ b/Strings/ExampleStrings/src/Strpractice.java[m
+[36m@@ -1,4 +1,18 @@[m
+[31m-package PACKAGE_NAME;[m
+[32m+[m[32mpublic class Strpractice[m
+[32m+[m[32m{[m
+[32m+[m[32m    static void printString()[m
+[32m+[m[32m    {[m
+[32m+[m[32m        String name = "Suraj";[m
+[32m+[m[32m        System.out.println(name);[m
+ [m
+[31m-public class Strpractice {[m
+[32m+[m[32m        System.out.println(name.length());[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public static void main(String[] args)[m
+[32m+[m[32m    {[m
+[32m+[m[32m        printString();[m
+[32m+[m[32m    }[m
+ }[m
+[32m+[m
+[32m+[m
+[32m+[m[32m// Demonstrate Str length[m
+\ No newline at end of file[m
