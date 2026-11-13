@@ -87,19 +87,31 @@ public class LearnStrings
 
     static char[] getEvenChar(char ch[])
     {
+        if(ch.length == 0)
+        {
+            return new char[]{};
+        }
+
+        char c[] = new char[(ch.length + 1) / 2] ;
+
+        int j = 0;
         for(int i = 0; i < ch.length; i++)
         {
             if(i % 2 == 0)
             {
-                
+                c[j] = ch[i];
+                j++;
             }
         }
-        return ch;
+        return c;
     }
 
     static void printEvenChar()
     {
         char ch[] = {'J','A','V','A'};
+//        char[] ch = {'p', 'q', 'r', 's'};
+//        char ch[] = {};
+
         char res[] = getEvenChar(ch);
 
         for(int i = 0; i < res.length; i++)
