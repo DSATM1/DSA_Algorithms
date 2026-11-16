@@ -6,7 +6,7 @@ public class LearnStrings
     public static void demo1() {
         char ch[] = new char[5];
 
-        System.out.print("Demo 1 Declaration : ");
+        System.out.print("Demo 1 Declaration \t\t\t\t: ");
         for(int i = 0; i < ch.length; i++)
         {
             System.out.print((int) ch[i] + " ");
@@ -18,7 +18,7 @@ public class LearnStrings
     // print those char
     public static void demo2() {
         char ch[] = {'S','u','r','a','j'};
-        System.out.print("Demo 2 Init : ");
+        System.out.print("Demo 2 Init \t\t\t\t\t: ");
         for(int i = 0; i < ch.length; i++)
         {
             System.out.print(ch[i] );
@@ -30,7 +30,7 @@ public class LearnStrings
     // create and get the length
     public static void demo3() {
         char ch[] = {'a','b','c','d'};
-        System.out.println("Demo 3 Length : " + ch.length);
+        System.out.println("Demo 3 Length \t\t\t\t\t: " + ch.length);
     }
 
     // T4 = Demonstrate ASCII values stored as characters
@@ -38,7 +38,7 @@ public class LearnStrings
     // print temp[i]
     public static void demo4() {
         char ch[] = {65,66 ,67,68};
-        System.out.print("Demo 4 Print ASCII value Code : ");
+        System.out.print("Demo 4 Print ASCII value Code   : ");
         for(int i = 0; i < ch.length; i++)
         {
             System.out.print(ch[i] + " ");
@@ -52,7 +52,7 @@ public class LearnStrings
         ch[0] = 'A';
         ch[1] = 'B';
 
-        System.out.print("Demo 5 Partial Creation : ");
+        System.out.print("Demo 5 Partial Creation \t\t: ");
         for(int i = 0; i < ch.length; i++)
         {
             System.out.print(ch[i] + " ");
@@ -62,18 +62,18 @@ public class LearnStrings
 
     public static void demo6() {
         char ch = 'A';
-        System.out.println("Demo 6 A -> B : " + (char)(ch + 1));
+        System.out.println("Demo 6 A -> B \t\t\t\t\t: " + (char)(ch + 1));
 
         ch = 'B';
-        System.out.println("Demo 6 B -> A : " + (char)(ch - 1));
+        System.out.println("Demo 6 B -> A \t\t\t\t\t: " + (char)(ch - 1));
     }
 
     public static void demo7() {
         char ch = 'A';
-        System.out.println("Demo 7 A -> a : " + (char)(ch + 32));
+        System.out.println("Demo 7 A -> a \t\t\t\t\t: " + (char)(ch + 32));
 
         ch = 'a';
-        System.out.println("Demo 7 a -> A : " + (char)(ch - 32));
+        System.out.println("Demo 7 a -> A \t\t\t\t\t: " + (char)(ch - 32));
     }
 
     // A - 65 Z - 90
@@ -83,11 +83,11 @@ public class LearnStrings
         char ch = 'S';
         if(ch >= 'A' && ch <= 'Z')
         {
-            System.out.println("Demo 8 check the case : " + ch + " Upper Case Letter ");
+            System.out.println("Demo 8 check the case \t\t\t: " + ch + " is Upper Case Letter ");
         }
         else
         {
-            System.out.println("Demo 8 check the case : " + ch + " Lower Case Letter ");
+            System.out.println("Demo 8 check the case \t\t\t: " + ch + " is Lower Case Letter ");
         }
     }
 
@@ -119,7 +119,7 @@ public class LearnStrings
 
         char res[] = getEvenChar(ch);
 
-        System.out.print("Demo 9 : Even Character : ");
+        System.out.print("Demo 9 Even Character \t\t\t: ");
         for(int i = 0; i < res.length; i++)
         {
             System.out.print(res[i] + " ");
@@ -130,7 +130,7 @@ public class LearnStrings
     public static void stringDemo() {
         String name = "JAVA";
 
-        System.out.print("Demo 10 : Even Character using Strings : ");
+        System.out.print("Demo 10 Even using Strings      : ");
         for(int i = 0; i < name.length(); i++)
         {
             if(i % 2 == 0)
@@ -141,17 +141,18 @@ public class LearnStrings
         System.out.println();
     }
 
-    // Print middle char if the str length is odd otherwise print 2 middle char
+    // Print middle char if the str length is odd
+    // otherwise print 2 middle char
     public static void printmiddleChar() {
         char ch[] = {'S','U','R','A','J'};
 
         if(ch.length % 2 == 1)
         {
-            System.out.println("Demo 11 : Middle : " + ch[ch.length/2]);
+            System.out.println("Demo 11 Middle \t\t\t\t\t: " + ch[ch.length/2]);
         }
         else
         {
-            System.out.println("Demo 11 : Middle 2 Ele : " + ch[ch.length/2 - 1] + " " + ch[ch.length/2]);
+            System.out.println("Demo 11 Middle 2 Ele \t\t\t\t\t: " + ch[ch.length/2 - 1] + " " + ch[ch.length/2]);
         }
     }
 
@@ -160,10 +161,10 @@ public class LearnStrings
         String str = "JAVA";
         if(str.length() % 2 == 1)
         {
-            System.out.println("Demo 12 : Middle : " + str.charAt(str.length()/2));
+            System.out.println("Demo 12 Middle \t\t\t: " + str.charAt(str.length()/2));
         }
         else {
-            System.out.println("Demo 12 : Middle 2 Ele : " + str.charAt(str.length()/2 - 1) + " " + str.charAt(str.length()/2));
+            System.out.println("Demo 12 Middle 2 Ele \t\t\t: " + str.charAt(str.length()/2 - 1) + " " + str.charAt(str.length()/2));
         }
 
     }
@@ -182,7 +183,22 @@ public class LearnStrings
                 count++;
             }
         }
-        System.out.println("Count of Special Character : " + count);
+        System.out.println("Count of Special Character \t\t: " + count);
+    }
+
+    public static void searchElementInChar() {
+        char ch[] = {'S','U','R','A','J'};
+        boolean isPresent = false;
+        char key = 'U';
+
+        for(int i = 0; i < ch.length; i++)
+        {
+            if(ch[i] == key)
+            {
+                isPresent = true;
+            }
+        }
+        System.out.println("Search Element in Char Array    : " + isPresent);
     }
 
     public static void countOccurance() {
@@ -197,7 +213,7 @@ public class LearnStrings
                 count++;
             }
         }
-        System.out.println("Count of Character Occurance : " + count);
+        System.out.println("Count of Character Occurance    : " + count);
     }
 
     public static void getLargestElement() {
@@ -211,7 +227,7 @@ public class LearnStrings
                 large = ch[i];
             }
         }
-        System.out.println("Largest Element is : " + large);
+        System.out.println("Largest Element is \t\t\t\t: " + large);
     }
 
     public static void stringGetLarge() {
@@ -224,7 +240,7 @@ public class LearnStrings
                 largest = name.charAt(i);
             }
         }
-        System.out.println("Largest Element is : " + largest + " In String ");
+        System.out.println("Largest Element is \t\t\t\t: " + largest + " In String ");
     }
 
     public static void replaceVowelswithStar() {
@@ -238,8 +254,31 @@ public class LearnStrings
                 ch[i] = '*';
             }
         }
-        System.out.print("Vowels Replaced By * : ");
+        System.out.print("Vowels Replaced By * \t\t\t: ");
         System.out.println(ch);
+    }
+
+    public static void strReplaceVowel()  {
+        String str = "Suraj";
+
+        String res = "";
+
+        for(int i = 0; i < str.length(); i++)
+        {
+            char ch = str.charAt(i);
+            if(ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U'
+                    || ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u')
+            {
+                res = res + '*';
+            }
+            else
+            {
+                res = res + ch;
+            }
+        }
+        System.out.print("Vowels Replaced By * in String  : ");
+        System.out.println(res);
+
     }
 
     public static void countLastWordLength() {
@@ -257,7 +296,7 @@ public class LearnStrings
             count++;
             index--;
         }
-        System.out.println("Length of last Word : " + count);
+        System.out.println("Length of last Word \t\t\t: " + count);
     }
 
     public static void reverseStrinChar() {
@@ -266,7 +305,7 @@ public class LearnStrings
 
         int start = 0;
 
-        for(int end = 0; end < ch.length; end++)
+        for(int end = 0; end <= ch.length - 1; end++)
         {
             if(end == ch.length || ch[end] == ' ')
             {
@@ -286,9 +325,10 @@ public class LearnStrings
             }
         }
 
-        for(int c : ch)
+        System.out.print("Reversed Char Array \t\t\t: ");
+        for(char c : ch)
         {
-            System.out.println(ch);
+            System.out.print(c);
         }
     }
 
@@ -306,34 +346,18 @@ public class LearnStrings
         stringDemo();
         printmiddleChar();
         printStrMiddle();
-        getCountSpecialChar();  // 1
-                                // 2
-        countOccurance();       // 3
-        getLargestElement();    // 4
-        stringGetLarge();       // 4 String
+        getCountSpecialChar();   // 1
+        searchElementInChar();   // 2
+        countOccurance();        // 3
+        getLargestElement();     // 4
+        stringGetLarge();        // 4 String
         replaceVowelswithStar(); // 5
-        countLastWordLength();  // leetcode - 58
-        reverseStrinChar();     // leetcode 557
+        strReplaceVowel();       // 5
+        countLastWordLength();   // leetcode - 58
+        reverseStrinChar();    // leetcode 557
     }
 }
 
-
-
-
-//    public static void strReplaceVstar()
-//    {
-//        String name = "Suraj";
-//        for(int i = 0; i < ch.length; i++)
-//        {
-//            if(ch[i] == 'A' || ch[i] == 'E' || ch[i] == 'I' || ch[i] == 'O' || ch[i] == 'U'
-//                    || ch[i] == 'a' || ch[i] == 'e' || ch[i] == 'i' || ch[i] == 'o' || ch[i] == 'u')
-//            {
-//                ch[i] = '*';
-//            }
-//        }
-//        System.out.print("Vowels Replaced By * : ");
-//        System.out.println(ch);
-//    }
 
 // input
 // int maxWord = 0
