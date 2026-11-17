@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101610">
+  <title>Stacks — Learn &amp; Visualize</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #101610;
+      --panel: #182119;
+      --panel-light: #202b22;
+      --line: #334036;
+      --text: #f1f3eb;
+      --muted: #a7b2a5;
+      --green: #c8f169;
+      --green-dark: #253516;
+      --coral: #ff927d;
+      --mono: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-width: 320px;
+      margin: 0;
+      background:
+        radial-gradient(ellipse at 82% 0%, #26331d 0, transparent 34rem),
+        var(--bg);
+      color: var(--text);
+      font: 16px/1.6 var(--sans);
+    }
+
+    button, input { font: inherit; }
+    button { color: inherit; }
+
+    .page {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 46px 0 72px;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 14px;
+      color: var(--green);
+      font-size: .75rem;
+      font-weight: 750;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      content: "";
+      box-shadow: 0 0 14px #c8f16988;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 780px;
+      margin-bottom: 12px;
+      font-size: clamp(2.6rem, 7vw, 5rem);
+      letter-spacing: -.075em;
+      line-height: .99;
+    }
+
+    h1 span { color: var(--green); }
+    .intro { max-width: 650px; margin-bottom: 34px; color: var(--muted); font-size: 1.08rem; }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-right: 7px;
+      padding: 3px 10px;
+      border: 1px solid var(--line);
+      border-radius: 99px;
+      color: var(--muted);
+      font-size: .78rem;
+      vertical-align: middle;
+    }
+
+    .tag strong { color: var(--green); font-weight: 650; }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(300px, .75fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: color-mix(in srgb, var(--panel) 95%, transparent);
+      box-shadow: 0 18px 55px #00000018;
+    }
+
+    .card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 19px 22px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .card-head h2, .card-head p { margin: 0; }
+    .card-head h2 { font-size: 1rem; letter-spacing: -.02em; }
+    .card-head p { color: var(--muted); font-size: .8rem; }
+
+    .stage {
+      display: grid;
+      min-height: 386px;
+      grid-template-columns: minmax(0, 1fr) 150px;
+      gap: 20px;
+      padding: 26px 22px 18px;
+    }
+
+    .stack-area {
+      display: flex;
+      min-height: 316px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 6px 10px 0;
+    }
+
+    .top-label {
+      display: flex;
+      width: min(240px, 100%);
+      justify-content: flex-start;
+      margin: 0 0 9px;
+      color: var(--green);
+      font: 700 .72rem var(--mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .stack {
+      display: flex;
+      width: min(240px, 100%);
+      min-height: 256px;
+      flex-direction: column-reverse;
+      justify-content: flex-start;
+      gap: 7px;
+      padding: 10px 12px 12px;
+      border-right: 3px solid #728271;
+      border-bottom: 3px solid #728271;
+      border-left: 3px solid #728271;
+      border-radius: 0 0 10px 10px;
+      background: linear-gradient(90deg, #ffffff05, transparent 35%);
+    }
+
+    .item {
+      display: grid;
+      min-height: 40px;
+      place-items: center;
+      border: 1px solid #d5f49866;
+      border-radius: 8px;
+      background: linear-gradient(110deg, #35472b, #293820);
+      color: #e9f8cf;
+      font: 700 .95rem var(--mono);
+      animation: drop-in .24s ease-out both;
+    }
+
+    .item:last-child { border-color: #c8f1a9; box-shadow: 0 0 18px #c8f16920; }
+    .empty-message {
+      display: grid;
+      flex: 1;
+      place-items: center;
+      color: #788579;
+      font-size: .85rem;
+      text-align: center;
+    }
+
+    @keyframes drop-in {
+      from { transform: translateY(-12px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .side-info { display: flex; flex-direction: column; gap: 10px; }
+    .stat {
+      padding: 13px 14px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #ffffff04;
+    }
+
+    .stat-label { display: block; margin-bottom: 5px; color: var(--muted); font-size: .73rem; }
+    .stat-value { display: block; overflow-wrap: anywhere; font: 700 .95rem var(--mono); }
+    .stat-value.accent { color: var(--green); }
+
+    .controls {
+      display: grid;
+      grid-template-columns: minmax(100px, 1fr) auto auto auto auto;
+      gap: 8px;
+      padding: 16px 22px 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    input {
+      min-width: 0;
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      outline: none;
+      background: #101610;
+      color: var(--text);
+    }
+
+    input:focus-visible, button:focus-visible {
+      outline: 2px solid var(--green);
+      outline-offset: 3px;
+    }
+
+    .btn {
+      min-height: 42px;
+      padding: 9px 13px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: var(--panel-light);
+      cursor: pointer;
+      font-size: .83rem;
+      font-weight: 650;
+      transition: background .16s, border-color .16s, transform .16s;
+    }
+
+    .btn:hover { transform: translateY(-1px); border-color: #687664; background: #2a362b; }
+    .btn-primary { border-color: var(--green); background: var(--green); color: #172010; }
+    .btn-primary:hover { border-color: #dcffa4; background: #dcffa4; }
+    .btn:disabled { cursor: not-allowed; opacity: .45; transform: none; }
+    .btn-quiet { background: transparent; }
+
+    .message {
+      min-height: 28px;
+      margin: 0;
+      padding: 0 22px 12px;
+      color: var(--muted);
+      font-size: .84rem;
+    }
+
+    .message[data-kind="success"] { color: var(--green); }
+    .message[data-kind="error"] { color: var(--coral); }
+
+    .lesson {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .lesson-card { padding: 22px; }
+    .lesson-card h2 { margin-bottom: 8px; font-size: 1.03rem; }
+    .lesson-card > p { margin-bottom: 0; color: var(--muted); font-size: .9rem; }
+    .lifeline {
+      display: inline-block;
+      margin: 8px 0 12px;
+      padding: 7px 12px;
+      border-radius: 8px;
+      background: var(--green-dark);
+      color: var(--green);
+      font: 750 .8rem var(--mono);
+    }
+
+    .complexity {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 15px;
+    }
+
+    .complexity div { padding: 10px; border: 1px solid var(--line); border-radius: 9px; }
+    .complexity strong { display: block; color: var(--green); font: 750 .9rem var(--mono); }
+    .complexity span { color: var(--muted); font-size: .72rem; }
+
+    .code-card { margin-top: 18px; }
+    .code-note { color: var(--muted); font-size: .8rem; }
+    pre {
+      overflow-x: auto;
+      margin: 0;
+      padding: 20px 22px;
+      color: #dce8d8;
+      font: .84rem/1.85 var(--mono);
+      tab-size: 2;
+    }
+
+    .code-comment { color: #81927f; }
+    .code-keyword { color: #d1a8ff; }
+    .code-type { color: #9cceff; }
+    .code-string { color: var(--green); }
+    .quiz { margin-top: 18px; }
+    .quiz-content { padding: 20px 22px; }
+    .quiz-content p { margin-bottom: 12px; }
+    .quiz-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+    .quiz-result { min-height: 25px; margin: 12px 0 0; color: var(--green); font-size: .87rem; }
+    footer { margin-top: 26px; color: #7d897b; font-size: .78rem; text-align: center; }
+
+    @media (max-width: 760px) {
+      .page { width: min(100% - 28px, 620px); padding-top: 32px; }
+      .layout { grid-template-columns: 1fr; }
+      .stage { min-height: 0; grid-template-columns: minmax(0, 1fr) 128px; }
+      .stack-area { min-height: 280px; }
+      .stack { min-height: 220px; }
+    }
+
+    @media (max-width: 520px) {
+      .card-head { align-items: flex-start; flex-direction: column; }
+      .stage { grid-template-columns: 1fr; }
+      .stack-area { min-height: 260px; }
+      .stack { min-height: 210px; }
+      .side-info { display: grid; grid-template-columns: repeat(3, 1fr); }
+      .stat { padding: 10px; }
+      .stat-value { font-size: .78rem; }
+      .controls { grid-template-columns: repeat(4, 1fr); padding-inline: 14px; }
+      .controls input { grid-column: 1 / -1; }
+      .btn { padding-inline: 9px; }
+      .lesson { grid-template-columns: 1fr; }
+      .lesson-card, .quiz-content { padding: 18px; }
+      .complexity { gap: 5px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <p class="eyebrow">Data structures · Java</p>
+    <h1>Meet the <span>stack.</span></h1>
+    <p class="intro">A stack is a simple structure with one important rule: the last item you put in is the first one you take out. Try it below, then see how the same idea looks in Java.</p>
+    <p>
+      <span class="tag"><strong>LIFO</strong> Last In, First Out</span>
+      <span class="tag">Top-only access</span>
+    </p>
+
+    <section class="layout" aria-label="Interactive stack and operation guide">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <h2>Stack playground</h2>
+            <p>Push a value on top, or pop the top value off.</p>
+          </div>
+          <button class="btn btn-quiet" id="resetButton" type="button">Reset example</button>
+        </div>
+        <div class="stage">
+          <div class="stack-area">
+            <div class="top-label" id="topLabel">↑ top</div>
+            <div class="stack" id="stack" role="list" aria-label="Stack values, bottom to top"></div>
+          </div>
+          <aside class="side-info" aria-label="Stack status">
+            <div class="stat"><span class="stat-label">TOP value</span><strong class="stat-value accent" id="topValue">—</strong></div>
+            <div class="stat"><span class="stat-label">SIZE</span><strong class="stat-value" id="sizeValue">0 / 6</strong></div>
+            <div class="stat"><span class="stat-label">LAST action</span><strong class="stat-value" id="lastAction">Ready</strong></div>
+          </aside>
+        </div>
+        <div class="controls">
+          <input id="valueInput" type="number" step="1" value="40" aria-label="Value to push" placeholder="Enter a number">
+          <button class="btn btn-primary" id="pushButton" type="button">Push</button>
+          <button class="btn" id="popButton" type="button">Pop</button>
+          <button class="btn" id="peekButton" type="button">Peek</button>
+          <button class="btn" id="clearButton" type="button">Clear</button>
+        </div>
+        <p class="message" id="message" role="status" aria-live="polite"></p>
+      </div>
+
+      <aside class="card">
+        <div class="card-head">
+          <div>
+            <h2>What each operation does</h2>
+            <p>Every operation works at the top.</p>
+          </div>
+        </div>
+        <div class="lesson-card">
+          <h2>Try this sequence</h2>
+          <p>Start with <strong>10, 20, 30</strong> (30 is on top). Press <strong>Push</strong> to add 40, then <strong>Pop</strong>. The 40 you just added comes right back off.</p>
+          <div class="lifeline">10 → 20 → 30 → 40<br>bottom &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; top</div>
+          <p>Each value is available only from the top. That makes a stack feel like a pile of plates: you add and remove plates at the top.</p>
+          <div class="complexity" aria-label="Operation time complexity">
+            <div><strong>O(1)</strong><span>push / pop / peek</span></div>
+            <div><strong>O(n)</strong><span>search (typically)</span></div>
+            <div><strong>O(n)</strong><span>space for n items</span></div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="card code-card" aria-labelledby="java-title">
+      <div class="card-head">
+        <div>
+          <h2 id="java-title">The same stack in Java</h2>
+          <p>For everyday Java code, prefer <code>ArrayDeque</code> as a stack.</p>
+        </div>
+        <span class="tag">java.util</span>
+      </div>
+      <pre><code><span class="code-keyword">import</span> java.util.ArrayDeque;
+<span class="code-keyword">import</span> java.util.Deque;
+
+Deque&lt;Integer&gt; stack = <span class="code-keyword">new</span> ArrayDeque&lt;&gt;();
+
+stack.push(10);                 <span class="code-comment">// add to the top: [10]</span>
+stack.push(20);                 <span class="code-comment">// add to the top: [10, 20]</span>
+<span class="code-type">int</span> top = stack.peek();        <span class="code-comment">// read top (20), keep it there</span>
+<span class="code-type">int</span> removed = stack.pop();     <span class="code-comment">// remove and return 20</span>
+<span class="code-type">boolean</span> empty = stack.isEmpty(); <span class="code-comment">// check before popping</span></code></pre>
+    </section>
+
+    <section class="card quiz" aria-labelledby="quiz-title">
+      <div class="card-head">
+        <div>
+          <h2 id="quiz-title">Quick check</h2>
+          <p>Make a prediction before revealing the answer.</p>
+        </div>
+      </div>
+      <div class="quiz-content">
+        <p>Push <strong>A</strong>, then <strong>B</strong>, then <strong>C</strong>. Which value does the next <code>pop()</code> return?</p>
+        <div class="quiz-actions">
+          <button class="btn quiz-answer" type="button" data-answer="A">A</button>
+          <button class="btn quiz-answer" type="button" data-answer="B">B</button>
+          <button class="btn quiz-answer" type="button" data-answer="C">C</button>
+        </div>
+        <p class="quiz-result" id="quizResult" aria-live="polite"></p>
+      </div>
+    </section>
+    <footer>Common uses: undo history, browser back, function calls, and checking balanced brackets.</footer>
+  </main>
+
+  <script>
+    (() => {
+      const capacity = 6;
+      const values = [10, 20, 30];
+      const stackElement = document.querySelector("#stack");
+      const valueInput = document.querySelector("#valueInput");
+      const message = document.querySelector("#message");
+      const topValue = document.querySelector("#topValue");
+      const sizeValue = document.querySelector("#sizeValue");
+      const lastAction = document.querySelector("#lastAction");
+      const pushButton = document.querySelector("#pushButton");
+      const popButton = document.querySelector("#popButton");
+      const peekButton = document.querySelector("#peekButton");
+
+      function render() {
+        stackElement.replaceChildren();
+        if (values.length === 0) {
+          const empty = document.createElement("div");
+          empty.className = "empty-message";
+          empty.textContent = "Stack is empty";
+          stackElement.append(empty);
+        } else {
+          values.forEach((value) => {
+            const item = document.createElement("div");
+            item.className = "item";
+            item.setAttribute("role", "listitem");
+            item.textContent = value;
+            stackElement.append(item);
+          });
+        }
+
+        topValue.textContent = values.length ? values[values.length - 1] : "—";
+        sizeValue.textContent = `${values.length} / ${capacity}`;
+        pushButton.disabled = values.length === capacity;
+        popButton.disabled = values.length === 0;
+        peekButton.disabled = values.length === 0;
+      }
+
+      function announce(text, kind = "success", action = "") {
+        message.textContent = text;
+        message.dataset.kind = kind;
+        if (action) lastAction.textContent = action;
+      }
+
+      pushButton.addEventListener("click", () => {
+        const value = valueInput.value.trim();
+        if (value === "" || !Number.isSafeInteger(Number(value))) {
+          announce("Enter a whole number to push onto the stack.", "error");
+          valueInput.focus();
+          return;
+        }
+        if (values.length === capacity) {
+          announce("Stack is full. Pop a value before pushing another.", "error");
+          return;
+        }
+        values.push(Number(value));
+        render();
+        announce(`Pushed ${value} onto the top of the stack.`, "success", "Push");
+      });
+
+      popButton.addEventListener("click", () => {
+        if (values.length === 0) {
+          announce("Stack is empty. There is nothing to pop.", "error");
+          return;
+        }
+        const removed = values.pop();
+        render();
+        announce(`Popped ${removed} off the top of the stack.`, "success", "Pop");
+      });
+
+      peekButton.addEventListener("click", () => {
+        if (values.length === 0) {
+          announce("Stack is empty. There is no top value to peek at.", "error");
+          return;
+        }
+        announce(`Peek: ${values[values.length - 1]} is on top. The stack is unchanged.`, "success", "Peek");
+      });
+
+      document.querySelector("#clearButton").addEventListener("click", () => {
+        values.length = 0;
+        render();
+        announce("Stack cleared. Push a value to start again.", "success", "Clear");
+      });
+
+      document.querySelector("#resetButton").addEventListener("click", () => {
+        values.splice(0, values.length, 10, 20, 30);
+        valueInput.value = "40";
+        render();
+        announce("Example restored: 10, 20, 30. The top value is 30.", "success", "Reset");
+      });
+
+      valueInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") pushButton.click();
+      });
+
+      document.querySelectorAll(".quiz-answer").forEach((button) => {
+        button.addEventListener("click", () => {
+          const result = document.querySelector("#quizResult");
+          result.textContent = button.dataset.answer === "C"
+            ? "Correct! C was pushed last, so it is popped first. That's LIFO."
+            : "Not quite. A stack is LIFO: the last value pushed is the first one popped. Try again!";
+          result.style.color = button.dataset.answer === "C" ? "var(--green)" : "var(--coral)";
+        });
+      });
+
+      render();
+    })();
+  </script>
+</body>
+</html>
