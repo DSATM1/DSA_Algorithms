@@ -299,13 +299,13 @@ public class LearnStrings
         System.out.println("Length of last Word \t\t\t: " + count);
     }
 
-    public static void reverseStrinChar() {
-
+    public static void reverseCharArray() {
         char ch[] = {'L','e','t','\'','s',' ','C','o','d','e'};
+//        char ch[] = {'S','U','R','A','J'};
 
         int start = 0;
 
-        for(int end = 0; end <= ch.length - 1; end++)
+        for(int end = 0; end <= ch.length ; end++)
         {
             if(end == ch.length || ch[end] == ' ')
             {
@@ -316,7 +316,7 @@ public class LearnStrings
                 {
                     char temp = ch[left];
                     ch[left] = ch[right];
-                    ch[right] = ch[left];
+                    ch[right] = temp;
 
                     left++;
                     right--;
@@ -354,7 +354,7 @@ public class LearnStrings
         replaceVowelswithStar(); // 5
         strReplaceVowel();       // 5
         countLastWordLength();   // leetcode - 58
-        reverseStrinChar();    // leetcode 557
+        reverseCharArray();      // leetcode 557
     }
 }
 
