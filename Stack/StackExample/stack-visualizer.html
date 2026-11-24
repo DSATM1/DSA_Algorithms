@@ -161,6 +161,30 @@
       background: linear-gradient(90deg, #ffffff05, transparent 35%);
     }
 
+    .stack-slot {
+      position: relative;
+      display: grid;
+      min-height: 40px;
+      place-items: center;
+      border: 1px dashed #596956;
+      border-radius: 8px;
+      color: #6d7c6b;
+      font: 700 .82rem var(--mono);
+    }
+
+    .stack-slot.filled {
+      border-style: solid;
+      border-color: #d5f49866;
+      background: linear-gradient(110deg, #35472b, #293820);
+      color: #e9f8cf;
+      font-size: .95rem;
+      animation: drop-in .24s ease-out both;
+    }
+
+    .stack-slot.top-slot { border-color: #c8f1a9; box-shadow: 0 0 18px #c8f16920; }
+    .slot-index { position: absolute; right: 8px; color: #7b8e76; font: .66rem var(--mono); }
+    .stack-slot.filled .slot-index { color: #b6ca9e; }
+
     .item {
       display: grid;
       min-height: 40px;
@@ -202,7 +226,7 @@
 
     .controls {
       display: grid;
-      grid-template-columns: minmax(100px, 1fr) auto auto auto auto;
+      grid-template-columns: minmax(100px, 1fr) auto auto auto auto auto;
       gap: 8px;
       padding: 16px 22px 18px;
       border-top: 1px solid var(--line);
@@ -241,6 +265,25 @@
     .btn-primary:hover { border-color: #dcffa4; background: #dcffa4; }
     .btn:disabled { cursor: not-allowed; opacity: .45; transform: none; }
     .btn-quiet { background: transparent; }
+
+    .history {
+      display: grid;
+      grid-template-columns: minmax(150px, .7fr) 1fr;
+      gap: 12px;
+      padding: 0 22px 20px;
+    }
+
+    .history-title { margin: 0 0 7px; color: var(--muted); font-size: .72rem; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
+    .history-list { display: flex; min-height: 30px; flex-wrap: wrap; align-items: center; gap: 6px; }
+    .history-chip { padding: 4px 8px; border: 1px solid var(--line); border-radius: 6px; color: var(--muted); font: .72rem var(--mono); }
+    .history-chip strong { color: var(--green); }
+    .history-empty { color: #71806f; font-size: .78rem; }
+    .progress-track { height: 8px; margin-top: 11px; overflow: hidden; border-radius: 99px; background: #0d120d; }
+    .progress-bar { width: 0; height: 100%; border-radius: inherit; background: var(--green); transition: width .2s ease; }
+
+    .position-control { display: flex; align-items: center; gap: 7px; margin-top: 15px; color: var(--muted); font-size: .8rem; }
+    .position-control input { width: 66px; padding: 7px 8px; }
+    .position-control .btn { min-height: 34px; padding: 6px 9px; }
 
     .message {
       min-height: 28px;
@@ -322,9 +365,10 @@
       .side-info { display: grid; grid-template-columns: repeat(3, 1fr); }
       .stat { padding: 10px; }
       .stat-value { font-size: .78rem; }
-      .controls { grid-template-columns: repeat(4, 1fr); padding-inline: 14px; }
+      .controls { grid-template-columns: repeat(3, 1fr); padding-inline: 14px; }
       .controls input { grid-column: 1 / -1; }
       .btn { padding-inline: 9px; }
+      .history { grid-template-columns: 1fr; padding-inline: 14px; }
       .lesson { grid-template-columns: 1fr; }
       .lesson-card, .quiz-content { padding: 18px; }
       .complexity { gap: 5px; }
@@ -371,6 +415,18 @@
           <button class="btn" id="popButton" type="button">Pop</button>
           <button class="btn" id="peekButton" type="button">Peek</button>
           <button class="btn" id="clearButton" type="button">Clear</button>
+          <button class="btn" id="undoButton" type="button">Undo</button>
+        </div>
+        <div class="history">
+          <div>
+            <p class="history-title">Capacity meter</p>
+            <strong class="stat-value" id="capacityText">3 of 6 slots used</strong>
+            <div class="progress-track" aria-hidden="true"><div class="progress-bar" id="capacityBar"></div></div>
+          </div>
+          <div>
+            <p class="history-title">Operation history</p>
+            <div class="history-list" id="historyList"><span class="history-empty">Your moves appear here.</span></div>
+          </div>
         </div>
         <p class="message" id="message" role="status" aria-live="polite"></p>
       </div>
@@ -391,6 +447,11 @@
             <div><strong>O(1)</strong><span>push / pop / peek</span></div>
             <div><strong>O(n)</strong><span>search (typically)</span></div>
             <div><strong>O(n)</strong><span>space for n items</span></div>
+          </div>
+          <div class="position-control">
+            <label for="positionInput">Peek from top (position)</label>
+            <input id="positionInput" type="number" min="1" max="6" value="2" aria-label="Position from top">
+            <button class="btn" id="positionPeekButton" type="button">Peek position</button>
           </div>
         </div>
       </aside>
@@ -440,6 +501,8 @@ stack.push(20);                 <span class="code-comment">// add to the top: [1
     (() => {
       const capacity = 6;
       const values = [10, 20, 30];
+      const history = [];
+      const snapshots = [];
       const stackElement = document.querySelector("#stack");
       const valueInput = document.querySelector("#valueInput");
       const message = document.querySelector("#message");
@@ -449,29 +512,55 @@ stack.push(20);                 <span class="code-comment">// add to the top: [1
       const pushButton = document.querySelector("#pushButton");
       const popButton = document.querySelector("#popButton");
       const peekButton = document.querySelector("#peekButton");
+      const undoButton = document.querySelector("#undoButton");
+      const historyList = document.querySelector("#historyList");
+      const capacityText = document.querySelector("#capacityText");
+      const capacityBar = document.querySelector("#capacityBar");
 
       function render() {
         stackElement.replaceChildren();
-        if (values.length === 0) {
-          const empty = document.createElement("div");
-          empty.className = "empty-message";
-          empty.textContent = "Stack is empty";
-          stackElement.append(empty);
-        } else {
-          values.forEach((value) => {
-            const item = document.createElement("div");
-            item.className = "item";
-            item.setAttribute("role", "listitem");
-            item.textContent = value;
-            stackElement.append(item);
-          });
+        for (let index = 0; index < capacity; index += 1) {
+          const slot = document.createElement("div");
+          const filled = index < values.length;
+          slot.className = `stack-slot${filled ? " filled" : ""}${index === values.length - 1 ? " top-slot" : ""}`;
+          slot.setAttribute("role", "listitem");
+          slot.setAttribute("aria-label", filled ? `Index ${index}: ${values[index]}` : `Index ${index}: empty`);
+          if (filled) slot.append(document.createTextNode(values[index]));
+          const indexLabel = document.createElement("span");
+          indexLabel.className = "slot-index";
+          indexLabel.textContent = `[${index}]`;
+          slot.append(indexLabel);
+          stackElement.append(slot);
         }
 
         topValue.textContent = values.length ? values[values.length - 1] : "—";
         sizeValue.textContent = `${values.length} / ${capacity}`;
+        capacityText.textContent = `${values.length} of ${capacity} slots used`;
+        capacityBar.style.width = `${(values.length / capacity) * 100}%`;
         pushButton.disabled = values.length === capacity;
         popButton.disabled = values.length === 0;
         peekButton.disabled = values.length === 0;
+        undoButton.disabled = snapshots.length === 0;
+        historyList.replaceChildren();
+        if (history.length === 0) {
+          const empty = document.createElement("span");
+          empty.className = "history-empty";
+          empty.textContent = "Your moves appear here.";
+          historyList.append(empty);
+        } else {
+          history.slice(-7).forEach(({ action, value }) => {
+            const chip = document.createElement("span");
+            chip.className = "history-chip";
+            chip.textContent = `${action}${value === undefined ? "" : ` ${value}`}`;
+            historyList.append(chip);
+          });
+        }
+      }
+
+      function remember(action, value) {
+        snapshots.push([...values]);
+        history.push({ action, value });
+        if (history.length > 12) history.shift();
       }
 
       function announce(text, kind = "success", action = "") {
@@ -491,6 +580,7 @@ stack.push(20);                 <span class="code-comment">// add to the top: [1
           announce("Stack is full. Pop a value before pushing another.", "error");
           return;
         }
+        remember("push", value);
         values.push(Number(value));
         render();
         announce(`Pushed ${value} onto the top of the stack.`, "success", "Push");
@@ -501,6 +591,7 @@ stack.push(20);                 <span class="code-comment">// add to the top: [1
           announce("Stack is empty. There is nothing to pop.", "error");
           return;
         }
+        remember("pop", values[values.length - 1]);
         const removed = values.pop();
         render();
         announce(`Popped ${removed} off the top of the stack.`, "success", "Pop");
@@ -514,17 +605,38 @@ stack.push(20);                 <span class="code-comment">// add to the top: [1
         announce(`Peek: ${values[values.length - 1]} is on top. The stack is unchanged.`, "success", "Peek");
       });
 
+      document.querySelector("#positionPeekButton").addEventListener("click", () => {
+        const position = Number(document.querySelector("#positionInput").value);
+        if (!Number.isInteger(position) || position < 1 || position > values.length) {
+          announce(`Choose a position from 1 to ${values.length || 1}.`, "error", "Peek position");
+          return;
+        }
+        const value = values[values.length - position];
+        announce(`Position ${position} from the top is ${value}. The stack is unchanged.`, "success", "Peek position");
+      });
+
       document.querySelector("#clearButton").addEventListener("click", () => {
+        if (values.length) remember("clear");
         values.length = 0;
         render();
         announce("Stack cleared. Push a value to start again.", "success", "Clear");
       });
 
       document.querySelector("#resetButton").addEventListener("click", () => {
+        snapshots.length = 0;
+        history.length = 0;
         values.splice(0, values.length, 10, 20, 30);
         valueInput.value = "40";
         render();
         announce("Example restored: 10, 20, 30. The top value is 30.", "success", "Reset");
+      });
+
+      undoButton.addEventListener("click", () => {
+        if (!snapshots.length) return;
+        values.splice(0, values.length, ...snapshots.pop());
+        history.push({ action: "undo" });
+        render();
+        announce("Undid the last change. The stack is back to its previous state.", "success", "Undo");
       });
 
       valueInput.addEventListener("keydown", (event) => {
