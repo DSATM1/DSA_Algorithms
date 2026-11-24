@@ -5,9 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ab80ae2-828e-4087-9447-2a4c9022b66e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ExampleQueues/src/MoveZeros.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Strings/ExampleStrings/src/LearnStrings.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Strings/ExampleStrings/src/LearnStrings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Strings/ExampleStrings/src/Strpractice.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Strings/ExampleStrings/src/Strpractice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/doNotAskNotifications.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Stack/StackExample/src/MainStack.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Stack/StackExample/src/MainStackLL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Stack/StackExample/stack-visualizer.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Stack/StackExample/stack-visualizer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Stack/out/production/StackExample/StackBluePrint.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Stack/out/production/StackExample/StackBluePrint.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Stack/out/production/StackExample/StackSM.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Stack/out/production/StackExample/StackSM.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
